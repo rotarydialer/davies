@@ -1,3 +1,6 @@
+# davies-specific files
+.mssqlpass
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
