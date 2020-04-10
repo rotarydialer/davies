@@ -1,4 +1,4 @@
-# Database Adaptation Variance Idiomatic Evolution Scheduler (davies)
+# **davies:** Database Adaptable Variance Idiomatic Evolution Scheduler
 
 ## Intended Audience
 
@@ -38,7 +38,7 @@ This project is modeled after
 a similar tool for managing schema changes in Postgres. Further, this
 project maintains the same goals (see below) and overall philosophy as `sem`,
 and can, in fact, be considered more or less a direct port of that tool
-for MS SQL. (Though we may ultimately not implement all features.)
+for MS SQL. (Though we may not ever reach full feature parity.)
 
 ## Project Goals
 
@@ -107,3 +107,5 @@ stretch to say we are applying the same principles to databases
 in this tool, we do consider this project to be an experiment in 
 making databases more adaptable. Davies' thoughts on this resonate
 with us.
+
+Oh, and the phrase is totally not a backronym. 😇
