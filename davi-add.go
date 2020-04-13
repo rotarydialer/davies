@@ -4,6 +4,7 @@ import (
 	"os"
 	"fmt"
 	"io"
+	"time"
 )
 
 func main() {
@@ -14,6 +15,7 @@ func main() {
 
 	for _, element := range files {
 		CopyToScripts(element)
+		time.Sleep(1 * time.Second)
 	}
 
 	fmt.Println("End.")
@@ -21,7 +23,8 @@ func main() {
 
 func CopyToScripts(filename string) {
 	var err error
-	destFilename := "scripts/" + filename // TODO: generate unique name
+
+	destFilename := "scripts/" + nowAsFilename() // TODO: generate unique name
 
 	if !fileExists(filename) {
 		fmt.Println("ERROR: file not found", filename)
@@ -33,7 +36,7 @@ func CopyToScripts(filename string) {
 		fmt.Println(fmt.Sprintf("Failed to copy '%s' to '%s'", filename, destFilename))
 		fmt.Println(err)
 	} else {
-		fmt.Println(fmt.Sprintf("👍 '%s'", destFilename))
+		fmt.Println(fmt.Sprintf("👍 Added %s as '%s'", filename, destFilename))
 	}
 }
 
@@ -68,4 +71,13 @@ func fileExists(filename string) bool {
         return false
     }
     return !info.IsDir()
+}
+
+func nowAsFilename() string {
+	// TODO: get extension from filename rather than assuming .sql
+	t := time.Now()
+
+	return fmt.Sprintf("%d%02d%02d-%02d%02d%02d.sql",
+			t.Year(), t.Month(), t.Day(),
+			t.Hour(), t.Minute(), t.Second())
 }
