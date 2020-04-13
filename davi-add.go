@@ -23,6 +23,11 @@ func CopyToScripts(filename string) {
 	var err error
 	destFilename := "scripts/" + filename // TODO: generate unique name
 
+	if !fileExists(filename) {
+		fmt.Println("ERROR: file not found", filename)
+        os.Exit(1)
+	}
+
 	_, err = copyFile(filename, destFilename)
 	if err != nil {
 		fmt.Println(fmt.Sprintf("Failed to copy '%s' to '%s'", filename, destFilename))
@@ -55,4 +60,12 @@ func copyFile(src, dst string) (int64, error) {
 	defer destination.Close()
 	nBytes, err := io.Copy(destination, source)
 	return nBytes, err
+}
+
+func fileExists(filename string) bool {
+    info, err := os.Stat(filename)
+    if os.IsNotExist(err) {
+        return false
+    }
+    return !info.IsDir()
 }
